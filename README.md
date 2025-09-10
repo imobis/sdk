@@ -11,7 +11,7 @@
 Вы можете установить пакет с помощью composer:
 
 ```bash
-composer require imobis/sdk
+composer require imobis/api-sdk
 ```
 
 ## Использование
