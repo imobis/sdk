@@ -1,8 +1,8 @@
 <?php
 
-namespace Imobis\Sdk;
+namespace Nexus\Message\Sdk;
 
-use Imobis\Sdk\Core\Singleton;
+use Nexus\Message\Sdk\Core\Singleton;
 use Monolog\Handler\StreamHandler;
 
 class Logger extends Singleton

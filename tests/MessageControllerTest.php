@@ -1,19 +1,19 @@
 <?php
 
-namespace Imobis\Sdk\Tests;
+namespace Nexus\Message\Sdk\Tests;
 
-use Imobis\Sdk\Config;
-use Imobis\Sdk\Controllers\MessageController;
-use Imobis\Sdk\Core\Collections\ChannelRouteCollection;
-use Imobis\Sdk\Core\Collections\Collection;
-use Imobis\Sdk\Core\Collections\HybridRouteCollection;
-use Imobis\Sdk\Core\Collections\MixedRouteCollection;
-use Imobis\Sdk\Core\Collections\RouteCollection;
-use Imobis\Sdk\Core\Collections\SimpleRouteCollection;
-use Imobis\Sdk\Entity\Error;
-use Imobis\Sdk\Entity\Status;
-use Imobis\Sdk\Entity\Token;
-use Imobis\Sdk\Exceptions\SenderException;
+use Nexus\Message\Sdk\Config;
+use Nexus\Message\Sdk\Controllers\MessageController;
+use Nexus\Message\Sdk\Core\Collections\ChannelRouteCollection;
+use Nexus\Message\Sdk\Core\Collections\Collection;
+use Nexus\Message\Sdk\Core\Collections\HybridRouteCollection;
+use Nexus\Message\Sdk\Core\Collections\MixedRouteCollection;
+use Nexus\Message\Sdk\Core\Collections\RouteCollection;
+use Nexus\Message\Sdk\Core\Collections\SimpleRouteCollection;
+use Nexus\Message\Sdk\Entity\Error;
+use Nexus\Message\Sdk\Entity\Status;
+use Nexus\Message\Sdk\Entity\Token;
+use Nexus\Message\Sdk\Exceptions\SenderException;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionMethod;

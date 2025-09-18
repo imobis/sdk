@@ -1,14 +1,14 @@
 <?php
 
-namespace Imobis\Sdk\Controllers;
+namespace Nexus\Message\Sdk\Controllers;
 
-use Imobis\Sdk\Config;
-use Imobis\Sdk\Core\Collections\Collection;
-use Imobis\Sdk\Core\Contract\Reading;
+use Nexus\Message\Sdk\Config;
+use Nexus\Message\Sdk\Core\Collections\Collection;
+use Nexus\Message\Sdk\Core\Contract\Reading;
 
 class PhoneController extends Controller implements Reading
 {
-    protected string $model = \Imobis\Sdk\Entity\Phone::class;
+    protected string $model = \Nexus\Message\Sdk\Entity\Phone::class;
     protected string $mode = Config::DATA_MODE;
 
     public function read(?Collection $collection = null, array $filters = []): array

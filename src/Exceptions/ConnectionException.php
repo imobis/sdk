@@ -1,13 +1,13 @@
 <?php
 
-namespace Imobis\Sdk\Exceptions;
+namespace Nexus\Message\Sdk\Exceptions;
 
 class ConnectionException extends \Exception
 {
     public function __construct(string $url)
     {
         parent::__construct(
-            'Не удалось установить подключение. URL: ' . $url
+            'Connection could not be established. URL: ' . $url
         );
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace Imobis\Sdk\Tests;
+namespace Nexus\Message\Sdk\Tests;
 
-use Imobis\Sdk\Config;
-use Imobis\Sdk\Controllers\TokenController;
-use Imobis\Sdk\Entity\Token;
+use Nexus\Message\Sdk\Config;
+use Nexus\Message\Sdk\Controllers\TokenController;
+use Nexus\Message\Sdk\Entity\Token;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionMethod;
@@ -192,7 +192,7 @@ class TokenControllerTest extends TestCase
         $controller = new TokenController($this->tokenMock);
         
         // Create a mock collection
-        $collectionMock = $this->createMock(\Imobis\Sdk\Core\Collections\Collection::class);
+        $collectionMock = $this->createMock(\Nexus\Message\Sdk\Core\Collections\Collection::class);
         
         // Create test filters
         $filters = ['test_filter' => 'test_value'];

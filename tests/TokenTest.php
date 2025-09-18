@@ -1,9 +1,9 @@
 <?php
 
-namespace Imobis\Sdk\Tests;
+namespace Nexus\Message\Sdk\Tests;
 
-use Imobis\Sdk\Config;
-use Imobis\Sdk\Entity\Token;
+use Nexus\Message\Sdk\Config;
+use Nexus\Message\Sdk\Entity\Token;
 use PHPUnit\Framework\TestCase;
 
 require_once 'vendor/autoload.php';

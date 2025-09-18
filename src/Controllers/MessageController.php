@@ -1,21 +1,21 @@
 <?php
 
-namespace Imobis\Sdk\Controllers;
+namespace Nexus\Message\Sdk\Controllers;
 
-use Imobis\Sdk\Config;
-use Imobis\Sdk\Core\Collections\ChannelRouteCollection;
-use Imobis\Sdk\Core\Collections\Collection;
-use Imobis\Sdk\Core\Collections\HybridRouteCollection;
-use Imobis\Sdk\Core\Collections\MixedRouteCollection;
-use Imobis\Sdk\Core\Collections\RouteCollection;
-use Imobis\Sdk\Core\Collections\SimpleRouteCollection;
-use Imobis\Sdk\Entity\Error;
-use Imobis\Sdk\Entity\Status;
-use Imobis\Sdk\Exceptions\SenderException;
+use Nexus\Message\Sdk\Config;
+use Nexus\Message\Sdk\Core\Collections\ChannelRouteCollection;
+use Nexus\Message\Sdk\Core\Collections\Collection;
+use Nexus\Message\Sdk\Core\Collections\HybridRouteCollection;
+use Nexus\Message\Sdk\Core\Collections\MixedRouteCollection;
+use Nexus\Message\Sdk\Core\Collections\RouteCollection;
+use Nexus\Message\Sdk\Core\Collections\SimpleRouteCollection;
+use Nexus\Message\Sdk\Entity\Error;
+use Nexus\Message\Sdk\Entity\Status;
+use Nexus\Message\Sdk\Exceptions\SenderException;
 
 class MessageController extends Controller
 {
-    protected string $model = \Imobis\Sdk\Core\Message::class;
+    protected string $model = \Nexus\Message\Sdk\Core\Message::class;
     protected string $mode = Config::DATA_MODE;
 
     public function send(RouteCollection $collection): array

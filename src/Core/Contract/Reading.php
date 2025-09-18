@@ -1,8 +1,8 @@
 <?php
 
-namespace Imobis\Sdk\Core\Contract;
+namespace Nexus\Message\Sdk\Core\Contract;
 
-use Imobis\Sdk\Core\Collections\Collection;
+use Nexus\Message\Sdk\Core\Collections\Collection;
 
 interface Reading
 {

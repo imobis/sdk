@@ -1,14 +1,14 @@
 <?php
 
-namespace Imobis\Sdk\Tests;
+namespace Nexus\Message\Sdk\Tests;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Psr7\Response;
-use Imobis\Sdk\Config;
-use Imobis\Sdk\Entity\Sandbox;
-use Imobis\Sdk\Entity\Token;
-use Imobis\Sdk\Exceptions\ConnectionException;
-use Imobis\Sdk\Request\HttpClient;
+use Nexus\Message\Sdk\Config;
+use Nexus\Message\Sdk\Entity\Sandbox;
+use Nexus\Message\Sdk\Entity\Token;
+use Nexus\Message\Sdk\Exceptions\ConnectionException;
+use Nexus\Message\Sdk\Request\HttpClient;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
 use ReflectionClass;

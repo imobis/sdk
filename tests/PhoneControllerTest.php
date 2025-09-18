@@ -1,12 +1,12 @@
 <?php
 
-namespace Imobis\Sdk\Tests;
+namespace Nexus\Message\Sdk\Tests;
 
-use Imobis\Sdk\Config;
-use Imobis\Sdk\Controllers\PhoneController;
-use Imobis\Sdk\Core\Collections\Collection;
-use Imobis\Sdk\Entity\Phone;
-use Imobis\Sdk\Entity\Token;
+use Nexus\Message\Sdk\Config;
+use Nexus\Message\Sdk\Controllers\PhoneController;
+use Nexus\Message\Sdk\Core\Collections\Collection;
+use Nexus\Message\Sdk\Entity\Phone;
+use Nexus\Message\Sdk\Entity\Token;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionMethod;
@@ -56,10 +56,10 @@ class PhoneControllerTest extends TestCase
         
         // Set up default behavior for the Phone mock
         $this->phoneMock->method('needCheck')->willReturn(true);
-        $this->phoneMock->method('getNumber')->willReturn('79939819173');
+        $this->phoneMock->method('getNumber')->willReturn('358451086128');
         $this->phoneMock->method('getProperties')->willReturn([
             'check' => true,
-            'number' => '79939819173',
+            'number' => '358451086128',
             'info' => [
                 'phone_number' => '',
                 'status' => '',
@@ -116,14 +116,14 @@ class PhoneControllerTest extends TestCase
         // Mock the getData method to return test data
         $rawData = [
             [
-                'phone_source' => '79939819173',
-                'phone_number' => '+7 (993) 981-91-73',
+                'phone_source' => '358451086128',
+                'phone_number' => '+358 451086128',
                 'status' => 'ok',
-                'country' => 'Russia',
-                'operator' => 'MTS',
-                'region_id' => '77',
-                'region_name' => 'Moscow',
-                'region_timezone' => 'Europe/Moscow'
+                'country' => 'FI',
+                'operator' => 'Saunalahti Group Oyj',
+                'region_id' => '',
+                'region_name' => '',
+                'region_timezone' => ''
             ]
         ];
         
@@ -138,20 +138,20 @@ class PhoneControllerTest extends TestCase
         
         // Set up the mock to return test data
         $controllerMock->method('getData')
-            ->with('read', ['phones' => ['79939819173']])
+            ->with('read', ['phones' => ['358451086128']])
             ->willReturn($testData);
         
         // Set up the Phone mock to expect setInfo and touch calls
         $this->phoneMock->expects($this->once())
             ->method('setInfo')
             ->with([
-                'phone_number' => '+7 (993) 981-91-73',
+                'phone_number' => '+358 451086128',
                 'status' => 'ok',
-                'country' => 'Russia',
-                'operator' => 'MTS',
-                'region_id' => '77',
-                'region_name' => 'Moscow',
-                'region_timezone' => 'Europe/Moscow'
+                'country' => 'FI',
+                'operator' => 'Saunalahti Group Oyj',
+                'region_id' => '',
+                'region_name' => '',
+                'region_timezone' => ''
             ])
             ->willReturnSelf();
         
@@ -266,10 +266,10 @@ class PhoneControllerTest extends TestCase
             ->getMock();
         
         $phoneMock2->method('needCheck')->willReturn(true);
-        $phoneMock2->method('getNumber')->willReturn('79991112233');
+        $phoneMock2->method('getNumber')->willReturn('358451086128');
         $phoneMock2->method('getProperties')->willReturn([
             'check' => true,
-            'number' => '79991112233',
+            'number' => '358451086128',
             'info' => [
                 'phone_number' => '',
                 'status' => '',
@@ -289,24 +289,24 @@ class PhoneControllerTest extends TestCase
         // Mock the getData method to return test data
         $rawData = [
             [
-                'phone_source' => '79939819173',
-                'phone_number' => '+7 (993) 981-91-73',
+                'phone_source' => '358451086128',
+                'phone_number' => '+358 451086128',
                 'status' => 'ok',
-                'country' => 'Russia',
-                'operator' => 'MTS',
-                'region_id' => '77',
-                'region_name' => 'Moscow',
-                'region_timezone' => 'Europe/Moscow'
+                'country' => 'FI',
+                'operator' => 'Saunalahti Group Oyj',
+                'region_id' => '',
+                'region_name' => '',
+                'region_timezone' => ''
             ],
             [
-                'phone_source' => '79991112233',
-                'phone_number' => '+7 (999) 111-22-33',
+                'phone_source' => '358451086128',
+                'phone_number' => '+358 451086128',
                 'status' => 'ok',
-                'country' => 'Russia',
-                'operator' => 'MTS',
-                'region_id' => '77',
-                'region_name' => 'Moscow',
-                'region_timezone' => 'Europe/Moscow'
+                'country' => 'FI',
+                'operator' => 'Saunalahti Group Oyj',
+                'region_id' => '',
+                'region_name' => '',
+                'region_timezone' => ''
             ]
         ];
         
@@ -321,20 +321,20 @@ class PhoneControllerTest extends TestCase
         
         // Set up the mock to return test data
         $controllerMock->method('getData')
-            ->with('read', ['phones' => ['79939819173', '79991112233']])
+            ->with('read', ['phones' => ['358451086128', '358451086128']])
             ->willReturn($testData);
         
         // Set up the Phone mocks to expect setInfo and touch calls
         $this->phoneMock->expects($this->once())
             ->method('setInfo')
             ->with([
-                'phone_number' => '+7 (993) 981-91-73',
+                'phone_number' => '+358 451086128',
                 'status' => 'ok',
-                'country' => 'Russia',
-                'operator' => 'MTS',
-                'region_id' => '77',
-                'region_name' => 'Moscow',
-                'region_timezone' => 'Europe/Moscow'
+                'country' => 'FI',
+                'operator' => 'Saunalahti Group Oyj',
+                'region_id' => '',
+                'region_name' => '',
+                'region_timezone' => ''
             ])
             ->willReturnSelf();
         
@@ -344,13 +344,13 @@ class PhoneControllerTest extends TestCase
         $phoneMock2->expects($this->once())
             ->method('setInfo')
             ->with([
-                'phone_number' => '+7 (999) 111-22-33',
+                'phone_number' => '+358 451086128',
                 'status' => 'ok',
-                'country' => 'Russia',
-                'operator' => 'MTS',
-                'region_id' => '77',
-                'region_name' => 'Moscow',
-                'region_timezone' => 'Europe/Moscow'
+                'country' => 'FI',
+                'operator' => 'Saunalahti Group Oyj',
+                'region_id' => '',
+                'region_name' => '',
+                'region_timezone' => ''
             ])
             ->willReturnSelf();
         
@@ -382,14 +382,14 @@ class PhoneControllerTest extends TestCase
         // Mock the getData method to return test data
         $rawData = [
             [
-                'phone_source' => '79939819173',
-                'phone_number' => '+7 (993) 981-91-73',
+                'phone_source' => '358451086128',
+                'phone_number' => '+358 451086128',
                 'status' => 'ok',
-                'country' => 'Russia',
-                'operator' => 'MTS',
-                'region_id' => '77',
-                'region_name' => 'Moscow',
-                'region_timezone' => 'Europe/Moscow'
+                'country' => 'FI',
+                'operator' => 'Saunalahti Group Oyj',
+                'region_id' => '',
+                'region_name' => '',
+                'region_timezone' => ''
             ]
         ];
         
@@ -404,7 +404,7 @@ class PhoneControllerTest extends TestCase
         
         // Set up the mock to return test data
         $controllerMock->method('getData')
-            ->with('read', ['phones' => ['79939819173']])
+            ->with('read', ['phones' => ['358451086128']])
             ->willReturn($testData);
         
         // Call the read method with filters

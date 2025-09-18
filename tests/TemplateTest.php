@@ -1,9 +1,9 @@
 <?php
 
-namespace Imobis\Sdk\Tests;
+namespace Nexus\Message\Sdk\Tests;
 
-use Imobis\Sdk\Entity\Channel;
-use Imobis\Sdk\Entity\Template;
+use Nexus\Message\Sdk\Entity\Channel;
+use Nexus\Message\Sdk\Entity\Template;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionMethod;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Imobis\Sdk\Exceptions;
+namespace Nexus\Message\Sdk\Exceptions;
 
 class HttpInvalidArgumentException extends \InvalidArgumentException
 {

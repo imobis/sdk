@@ -1,9 +1,9 @@
 <?php
 
-namespace Imobis\Sdk\ValueObject;
+namespace Nexus\Message\Sdk\ValueObject;
 
-use Imobis\Sdk\Config;
-use Imobis\Sdk\Core\Traits\Arrayable;
+use Nexus\Message\Sdk\Config;
+use Nexus\Message\Sdk\Core\Traits\Arrayable;
 
 class MessageMetadata
 {

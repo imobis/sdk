@@ -1,8 +1,8 @@
 <?php
 
-namespace Imobis\Sdk\Tests;
+namespace Nexus\Message\Sdk\Tests;
 
-use Imobis\Sdk\Entity\Reply;
+use Nexus\Message\Sdk\Entity\Reply;
 use PHPUnit\Framework\TestCase;
 
 require_once 'vendor/autoload.php';

@@ -1,8 +1,8 @@
 # IMOBIS SDK
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-[![Tests](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions/workflows/run-tests.yml)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/imobis/api-sdk)
+[![Tests](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/imobis/sdk/actions/workflows/run-tests.yml)
+[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/imobis/api-sdk)
 
 Библиотека для отправки сообщений через сервисы imobis.ru
 
@@ -19,7 +19,7 @@ composer require imobis/api-sdk
 Режим песочницы активируется с своим токеном перед созданием клиента:
 ```php
 $sandboxApiKey = '...';
-$sandbox = Imobis\Sdk\Client::enableSandbox($sandboxApiKey);
+$sandbox = Nexus\Message\Sdk\Client::enableSandbox($sandboxApiKey);
 ```
 
 Проверка активности песочницы:
@@ -29,21 +29,21 @@ $activated = $sandbox->active();
 
 Отключение песочницы:
 ```php
-Imobis\Sdk\Client::disableSandbox();
+Nexus\Message\Sdk\Client::disableSandbox();
 ```
 
 Создаем клиент с указанием ключа доступа:
 ```php
-use Imobis\Sdk\Exceptions\CollectionException;
-use Imobis\Sdk\Exceptions\ConnectionException;
-use Imobis\Sdk\Exceptions\HttpInvalidArgumentException;
-use Imobis\Sdk\Exceptions\LowBalanceException;
-use Imobis\Sdk\Exceptions\TokenException;
-use Imobis\Sdk\Exceptions\ViolationIntegrityEntityException;
+use Nexus\Message\Sdk\Exceptions\CollectionException;
+use Nexus\Message\Sdk\Exceptions\ConnectionException;
+use Nexus\Message\Sdk\Exceptions\HttpInvalidArgumentException;
+use Nexus\Message\Sdk\Exceptions\LowBalanceException;
+use Nexus\Message\Sdk\Exceptions\TokenException;
+use Nexus\Message\Sdk\Exceptions\ViolationIntegrityEntityException;
 
 try {
     $apiKey = '...';
-    $client = new Imobis\Sdk\Client($apiKey);
+    $client = new Nexus\Message\Sdk\Client($apiKey);
     $login = $client->getLogin();
 } catch (CollectionException $exception) {
     echo 'CollectionException: ' . $exception->getMessage();
@@ -71,7 +71,7 @@ $balance = $client->getBalance();
 
 Проверка номеров:
 ```php
-$collection = $client->checkPhones(['+7 (999) 111-22-33', '...']);
+$collection = $client->checkPhones(['79991112233', '...']);
 
 if ($collection->count() > 0) {
     foreach ($collection as $phone) {
@@ -107,7 +107,7 @@ if ($collection->count() > 0) {
 $reportUrl = 'https://example.com/report'; // На этот URL будут приходить статусы сообщений и ошибки отправки
 $replyUrl = 'https://example.com/reply'; // На этот URL будут приходить ответы на сообщения, если канал поддерживает данных функционал
 $ttl = 600;
-$metadata = Imobis\Sdk\ValueObject\MessageMetadata::create($reportUrl, $replyUrl, $ttl);
+$metadata = Nexus\Message\Sdk\ValueObject\MessageMetadata::create($reportUrl, $replyUrl, $ttl);
 ```
 
 Отправка кодов подтверждения в Телеграм:
@@ -146,7 +146,7 @@ $client->sendHybrid(['79991112233', '...'], 'Текст сообщения', $ch
 Обработка статусов и ошибок:
 ```php
 $post = file_get_contents('php://input');
-$handler = Imobis\Sdk\Client::statusHandler($post);
+$handler = Nexus\Message\Sdk\Client::statusHandler($post);
 $error = $handler->getError();
 $messageId = $handler->getEntityId();
 $status = $handler->getStatus();
@@ -156,7 +156,7 @@ $channel = $handler->getChannel();
 Обработка ответов:
 ```php
 $post = file_get_contents('php://input');
-$handler = Imobis\Sdk\Client::replyHandler($post);
+$handler = Nexus\Message\Sdk\Client::replyHandler($post);
 $messageId = $handler->getMessageId();
 $customId = $handler->getCustomId();
 $text = $handler->getText();
@@ -185,12 +185,12 @@ if ($collection->count() > 0) {
 
 Создание шаблона:
 ```php
-$template = new Imobis\Sdk\Entity\Template();
+$template = new Nexus\Message\Sdk\Entity\Template();
 $text = 'Текст шаблона';
 if ($template->checkText($text)) {
     $template->setName('Название шаблона')
         ->setText($text)
-        ->setChannel(Imobis\Sdk\Entity\Channel::SMS)
+        ->setChannel(Nexus\Message\Sdk\Entity\Channel::SMS)
         ->setGroupUrl('https://vk.com/...') // Для шаблонов Вконтакте
         ->setComment('Комментарий');
     $client->createTemplate($template);
@@ -209,7 +209,7 @@ $template->resetVariables();
 Изменение шаблона:
 ```php
 $template->setName('Новое название шаблона')
-    ->setChannel(Imobis\Sdk\Entity\Channel::VK);
+    ->setChannel(Nexus\Message\Sdk\Entity\Channel::VK);
 $client->updateTemplate($template);
 ```
 

@@ -1,32 +1,32 @@
 <?php
 
-namespace Imobis\Sdk\Tests;
+namespace Nexus\Message\Sdk\Tests;
 
-use Imobis\Sdk\Client;
-use Imobis\Sdk\Config;
-use Imobis\Sdk\Controllers\BalanceController;
-use Imobis\Sdk\Controllers\MessageController;
-use Imobis\Sdk\Controllers\PhoneController;
-use Imobis\Sdk\Controllers\SenderController;
-use Imobis\Sdk\Controllers\TemplateController;
-use Imobis\Sdk\Controllers\TokenController;
-use Imobis\Sdk\Core\Collections\ChannelRouteCollection;
-use Imobis\Sdk\Core\Collections\Collection;
-use Imobis\Sdk\Core\Collections\HybridRouteCollection;
-use Imobis\Sdk\Core\Collections\RouteCollection;
-use Imobis\Sdk\Core\Collections\SimpleRouteCollection;
-use Imobis\Sdk\Entity\Balance;
-use Imobis\Sdk\Entity\Phone;
-use Imobis\Sdk\Entity\Reply;
-use Imobis\Sdk\Entity\Sandbox;
-use Imobis\Sdk\Entity\Sender;
-use Imobis\Sdk\Entity\Status;
-use Imobis\Sdk\Entity\Template;
-use Imobis\Sdk\Entity\Token;
-use Imobis\Sdk\Exceptions\CollectionException;
-use Imobis\Sdk\Exceptions\LowBalanceException;
-use Imobis\Sdk\Exceptions\TokenException;
-use Imobis\Sdk\Exceptions\ViolationIntegrityEntityException;
+use Nexus\Message\Sdk\Client;
+use Nexus\Message\Sdk\Config;
+use Nexus\Message\Sdk\Controllers\BalanceController;
+use Nexus\Message\Sdk\Controllers\MessageController;
+use Nexus\Message\Sdk\Controllers\PhoneController;
+use Nexus\Message\Sdk\Controllers\SenderController;
+use Nexus\Message\Sdk\Controllers\TemplateController;
+use Nexus\Message\Sdk\Controllers\TokenController;
+use Nexus\Message\Sdk\Core\Collections\ChannelRouteCollection;
+use Nexus\Message\Sdk\Core\Collections\Collection;
+use Nexus\Message\Sdk\Core\Collections\HybridRouteCollection;
+use Nexus\Message\Sdk\Core\Collections\RouteCollection;
+use Nexus\Message\Sdk\Core\Collections\SimpleRouteCollection;
+use Nexus\Message\Sdk\Entity\Balance;
+use Nexus\Message\Sdk\Entity\Phone;
+use Nexus\Message\Sdk\Entity\Reply;
+use Nexus\Message\Sdk\Entity\Sandbox;
+use Nexus\Message\Sdk\Entity\Sender;
+use Nexus\Message\Sdk\Entity\Status;
+use Nexus\Message\Sdk\Entity\Template;
+use Nexus\Message\Sdk\Entity\Token;
+use Nexus\Message\Sdk\Exceptions\CollectionException;
+use Nexus\Message\Sdk\Exceptions\LowBalanceException;
+use Nexus\Message\Sdk\Exceptions\TokenException;
+use Nexus\Message\Sdk\Exceptions\ViolationIntegrityEntityException;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionMethod;
@@ -120,12 +120,12 @@ class ClientTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
         $this->balanceMock->method('getBalance')->willReturn(100.0);
-        $this->balanceMock->method('getCurrency')->willReturn('RUB');
+        $this->balanceMock->method('getCurrency')->willReturn(Config::CURRENCY);
         $this->balanceMock->method('isFresh')->willReturn(true);
         $this->balanceMock->method('getProperties')->willReturn([
             'balance' => 100.0,
             'fresh' => true,
-            'currency' => 'RUB'
+            'currency' => Config::CURRENCY
         ]);
         
         // Mock the Sandbox class
@@ -334,7 +334,7 @@ class ClientTest extends TestCase
         $this->balanceControllerMock->method('read')
             ->willReturn([
                 'balance' => 100.0,
-                'currency' => 'RUB'
+                'currency' => Config::CURRENCY
             ]);
         
         // Create a Client instance
@@ -346,7 +346,7 @@ class ClientTest extends TestCase
         // Verify the result
         $this->assertInstanceOf(Balance::class, $result, 'getBalance() should return a Balance instance');
         $this->assertEquals(100.0, $result->getBalance(), 'Balance should be 100.0');
-        $this->assertEquals('RUB', $result->getCurrency(), 'Currency should be RUB');
+        $this->assertEquals(Config::CURRENCY, $result->getCurrency(), 'Currency should be ' . Config::CURRENCY);
         $this->assertTrue($result->isFresh(), 'Balance should be fresh');
     }
     
@@ -360,7 +360,7 @@ class ClientTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
         $zeroBalanceMock->method('getBalance')->willReturn(0.0);
-        $zeroBalanceMock->method('getCurrency')->willReturn('RUB');
+        $zeroBalanceMock->method('getCurrency')->willReturn(Config::CURRENCY);
         $zeroBalanceMock->method('isFresh')->willReturn(true);
         
         // Set up the Balance singleton instance
@@ -387,26 +387,26 @@ class ClientTest extends TestCase
                 // Simulate the behavior of read() by setting phone info
                 foreach ($collection->all() as $phone) {
                     $phone->setInfo([
-                        'phone_number' => '79991234567',
+                        'phone_number' => '358451086128',
                         'status' => 'ok',
-                        'country' => 'Russia',
-                        'operator' => 'MTS',
-                        'region_id' => '77',
-                        'region_name' => 'Moscow',
-                        'region_timezone' => 'Europe/Moscow'
+                        'country' => 'FI',
+                        'operator' => 'Saunalahti Group Oyj',
+                        'region_id' => '',
+                        'region_name' => '',
+                        'region_timezone' => ''
                     ]);
                     $phone->touch();
                 }
 
                 return [
-                    '79991234567' => [
-                        'phone_number' => '79991234567',
+                    '358451086128' => [
+                        'phone_number' => '358451086128',
                         'status' => 'ok',
-                        'country' => 'Russia',
-                        'operator' => 'MTS',
-                        'region_id' => '77',
-                        'region_name' => 'Moscow',
-                        'region_timezone' => 'Europe/Moscow'
+                        'country' => 'FI',
+                        'operator' => 'Saunalahti Group Oyj',
+                        'region_id' => '',
+                        'region_name' => '',
+                        'region_timezone' => ''
                     ]
                 ];
             });
@@ -415,7 +415,7 @@ class ClientTest extends TestCase
         $client = $this->createClientWithMocks();
         
         // Call the checkPhones method
-        $result = $client->checkPhones(['+7 (999) 123-45-67']);
+        $result = $client->checkPhones(['+358 451086128']);
         
         // Verify the result
         $this->assertInstanceOf(Collection::class, $result, 'checkPhones() should return a Collection instance');
@@ -424,7 +424,7 @@ class ClientTest extends TestCase
         // Verify the Phone object in the collection
         $phone = $result->first();
         $this->assertInstanceOf(Phone::class, $phone, 'Collection should contain Phone objects');
-        $this->assertEquals('79991234567', $phone->getNumber(), 'Phone number should be parsed correctly');
+        $this->assertEquals('358451086128', $phone->getNumber(), 'Phone number should be parsed correctly');
     }
     
     /**
@@ -707,25 +707,25 @@ class ClientTest extends TestCase
                 // Simulate the behavior of read() by setting phone info
                 foreach ($collection->all() as $phone) {
                     $phone->setInfo([
-                        'phone_number' => '+7 (999) 123-45-67',
+                        'phone_number' => '+358 451086128',
                         'status' => 'ok',
-                        'country' => 'Russia',
-                        'operator' => 'MTS',
-                        'region_id' => '77',
-                        'region_name' => 'Moscow',
-                        'region_timezone' => 'Europe/Moscow'
+                        'country' => 'FI',
+                        'operator' => 'Saunalahti Group Oyj',
+                        'region_id' => '',
+                        'region_name' => '',
+                        'region_timezone' => ''
                     ]);
                     $phone->touch();
                 }
                 return [
-                    '79991234567' => [
-                        'phone_number' => '+7 (999) 123-45-67',
+                    '358451086128' => [
+                        'phone_number' => '+358 451086128',
                         'status' => 'ok',
-                        'country' => 'Russia',
-                        'operator' => 'MTS',
-                        'region_id' => '77',
-                        'region_name' => 'Moscow',
-                        'region_timezone' => 'Europe/Moscow'
+                        'country' => 'FI',
+                        'operator' => 'Saunalahti Group Oyj',
+                        'region_id' => '',
+                        'region_name' => '',
+                        'region_timezone' => ''
                     ]
                 ];
             });
@@ -742,7 +742,7 @@ class ClientTest extends TestCase
         $client = $this->createClientWithMocks();
         
         // Call the sendSms method
-        $result = $client->sendSms(['+7 (999) 123-45-67'], 'Test SMS message');
+        $result = $client->sendSms(['+358 451086128'], 'Test SMS message');
         
         // Verify the result
         $this->assertInstanceOf(RouteCollection::class, $result, 'sendSms() should return a RouteCollection instance');
@@ -759,25 +759,25 @@ class ClientTest extends TestCase
                 // Simulate the behavior of read() by setting phone info
                 foreach ($collection->all() as $phone) {
                     $phone->setInfo([
-                        'phone_number' => '+7 (999) 123-45-67',
+                        'phone_number' => '+358 451086128',
                         'status' => 'ok',
-                        'country' => 'Russia',
-                        'operator' => 'MTS',
-                        'region_id' => '77',
-                        'region_name' => 'Moscow',
-                        'region_timezone' => 'Europe/Moscow'
+                        'country' => 'FI',
+                        'operator' => 'Saunalahti Group Oyj',
+                        'region_id' => '',
+                        'region_name' => '',
+                        'region_timezone' => ''
                     ]);
                     $phone->touch();
                 }
                 return [
-                    '79991234567' => [
-                        'phone_number' => '+7 (999) 123-45-67',
+                    '358451086128' => [
+                        'phone_number' => '+358 451086128',
                         'status' => 'ok',
-                        'country' => 'Russia',
-                        'operator' => 'MTS',
-                        'region_id' => '77',
-                        'region_name' => 'Moscow',
-                        'region_timezone' => 'Europe/Moscow'
+                        'country' => 'FI',
+                        'operator' => 'Saunalahti Group Oyj',
+                        'region_id' => '',
+                        'region_name' => '',
+                        'region_timezone' => ''
                     ]
                 ];
             });
@@ -794,7 +794,7 @@ class ClientTest extends TestCase
         $client = $this->createClientWithMocks();
         
         // Call the sendTelegram method
-        $result = $client->sendTelegram(['+7 (999) 123-45-67'], 'Test Telegram message');
+        $result = $client->sendTelegram(['+358 451086128'], 'Test Telegram message');
         
         // Verify the result
         $this->assertInstanceOf(RouteCollection::class, $result, 'sendTelegram() should return a RouteCollection instance');
@@ -811,25 +811,25 @@ class ClientTest extends TestCase
                 // Simulate the behavior of read() by setting phone info
                 foreach ($collection->all() as $phone) {
                     $phone->setInfo([
-                        'phone_number' => '+7 (999) 123-45-67',
+                        'phone_number' => '+358 451086128',
                         'status' => 'ok',
-                        'country' => 'Russia',
-                        'operator' => 'MTS',
-                        'region_id' => '77',
-                        'region_name' => 'Moscow',
-                        'region_timezone' => 'Europe/Moscow'
+                        'country' => 'FI',
+                        'operator' => 'Saunalahti Group Oyj',
+                        'region_id' => '',
+                        'region_name' => '',
+                        'region_timezone' => ''
                     ]);
                     $phone->touch();
                 }
                 return [
-                    '79991234567' => [
-                        'phone_number' => '+7 (999) 123-45-67',
+                    '358451086128' => [
+                        'phone_number' => '+358 451086128',
                         'status' => 'ok',
-                        'country' => 'Russia',
-                        'operator' => 'MTS',
-                        'region_id' => '77',
-                        'region_name' => 'Moscow',
-                        'region_timezone' => 'Europe/Moscow'
+                        'country' => 'FI',
+                        'operator' => 'Saunalahti Group Oyj',
+                        'region_id' => '',
+                        'region_name' => '',
+                        'region_timezone' => ''
                     ]
                 ];
             });
@@ -846,10 +846,10 @@ class ClientTest extends TestCase
         $client = $this->createClientWithMocks();
         
         // Set the VK group ID
-        Config::$vk_group_id = 5965316;
+        Config::$vk_group_id = Config::getVKGroupId();
         
         // Call the sendVk method
-        $result = $client->sendVk(['+7 (999) 123-45-67'], 'Test VK message');
+        $result = $client->sendVk(['+358 451086128'], 'Test VK message');
         
         // Verify the result
         $this->assertInstanceOf(RouteCollection::class, $result, 'sendVk() should return a RouteCollection instance');
@@ -876,25 +876,25 @@ class ClientTest extends TestCase
                 // Simulate the behavior of read() by setting phone info
                 foreach ($collection->all() as $phone) {
                     $phone->setInfo([
-                        'phone_number' => '+7 (999) 123-45-67',
+                        'phone_number' => '+358 451086128',
                         'status' => 'ok',
-                        'country' => 'Russia',
-                        'operator' => 'MTS',
-                        'region_id' => '77',
-                        'region_name' => 'Moscow',
-                        'region_timezone' => 'Europe/Moscow'
+                        'country' => 'FI',
+                        'operator' => 'Saunalahti Group Oyj',
+                        'region_id' => '',
+                        'region_name' => '',
+                        'region_timezone' => ''
                     ]);
                     $phone->touch();
                 }
                 return [
-                    '79991234567' => [
-                        'phone_number' => '+7 (999) 123-45-67',
+                    '358451086128' => [
+                        'phone_number' => '+358 451086128',
                         'status' => 'ok',
-                        'country' => 'Russia',
-                        'operator' => 'MTS',
-                        'region_id' => '77',
-                        'region_name' => 'Moscow',
-                        'region_timezone' => 'Europe/Moscow'
+                        'country' => 'FI',
+                        'operator' => 'Saunalahti Group Oyj',
+                        'region_id' => '',
+                        'region_name' => '',
+                        'region_timezone' => ''
                     ]
                 ];
             });
@@ -912,7 +912,7 @@ class ClientTest extends TestCase
         
         // Call the sendViber method
         $result = $client->sendViber(
-            ['+7 (999) 123-45-67'],
+            ['+358 451086128'],
             'Test Viber message',
             null,
             'https://example.com/image.png',
@@ -944,25 +944,25 @@ class ClientTest extends TestCase
                 // Simulate the behavior of read() by setting phone info
                 foreach ($collection->all() as $phone) {
                     $phone->setInfo([
-                        'phone_number' => '+7 (999) 123-45-67',
+                        'phone_number' => '+358 451086128',
                         'status' => 'ok',
-                        'country' => 'Russia',
-                        'operator' => 'MTS',
-                        'region_id' => '77',
-                        'region_name' => 'Moscow',
-                        'region_timezone' => 'Europe/Moscow'
+                        'country' => 'FI',
+                        'operator' => 'Saunalahti Group Oyj',
+                        'region_id' => '',
+                        'region_name' => '',
+                        'region_timezone' => ''
                     ]);
                     $phone->touch();
                 }
                 return [
-                    '79991234567' => [
-                        'phone_number' => '+7 (999) 123-45-67',
+                    '358451086128' => [
+                        'phone_number' => '+358 451086128',
                         'status' => 'ok',
-                        'country' => 'Russia',
-                        'operator' => 'MTS',
-                        'region_id' => '77',
-                        'region_name' => 'Moscow',
-                        'region_timezone' => 'Europe/Moscow'
+                        'country' => 'FI',
+                        'operator' => 'Saunalahti Group Oyj',
+                        'region_id' => '',
+                        'region_name' => '',
+                        'region_timezone' => ''
                     ]
                 ];
             });
@@ -979,7 +979,7 @@ class ClientTest extends TestCase
         $client = $this->createClientWithMocks();
         
         // Call the sendSimple method
-        $result = $client->sendSimple('+7 (999) 123-45-67', 'Test Simple message');
+        $result = $client->sendSimple('+358 451086128', 'Test Simple message');
         
         // Verify the result
         $this->assertInstanceOf(SimpleRouteCollection::class, $result, 'sendSimple() should return a SimpleRouteCollection instance');
@@ -1008,25 +1008,25 @@ class ClientTest extends TestCase
                 // Simulate the behavior of read() by setting phone info
                 foreach ($collection->all() as $phone) {
                     $phone->setInfo([
-                        'phone_number' => '+7 (999) 123-45-67',
+                        'phone_number' => '+358 451086128',
                         'status' => 'ok',
-                        'country' => 'Russia',
-                        'operator' => 'MTS',
-                        'region_id' => '77',
-                        'region_name' => 'Moscow',
-                        'region_timezone' => 'Europe/Moscow'
+                        'country' => 'FI',
+                        'operator' => 'Saunalahti Group Oyj',
+                        'region_id' => '',
+                        'region_name' => '',
+                        'region_timezone' => ''
                     ]);
                     $phone->touch();
                 }
                 return [
-                    '79991234567' => [
-                        'phone_number' => '+7 (999) 123-45-67',
+                    '358451086128' => [
+                        'phone_number' => '+358 451086128',
                         'status' => 'ok',
-                        'country' => 'Russia',
-                        'operator' => 'MTS',
-                        'region_id' => '77',
-                        'region_name' => 'Moscow',
-                        'region_timezone' => 'Europe/Moscow'
+                        'country' => 'FI',
+                        'operator' => 'Saunalahti Group Oyj',
+                        'region_id' => '',
+                        'region_name' => '',
+                        'region_timezone' => ''
                     ]
                 ];
             });
@@ -1043,7 +1043,7 @@ class ClientTest extends TestCase
         $client = $this->createClientWithMocks();
         
         // Call the sendHybrid method
-        $result = $client->sendHybrid('+7 (999) 123-45-67', 'Test Hybrid message', ['telegram', 'sms']);
+        $result = $client->sendHybrid('+358 451086128', 'Test Hybrid message', ['telegram', 'sms']);
         
         // Verify the result
         $this->assertInstanceOf(HybridRouteCollection::class, $result, 'sendHybrid() should return a HybridRouteCollection instance');
@@ -1228,7 +1228,7 @@ class ClientTest extends TestCase
         // Verify the result
         $this->assertInstanceOf(Status::class, $result, 'statusHandler() should return a Status instance');
         $this->assertEquals('error', $result->getStatus(), 'Status should be "error"');
-        $this->assertInstanceOf(\Imobis\Sdk\Entity\Error::class, $result->getError(), 'Error should be an Error instance');
+        $this->assertInstanceOf(\Nexus\Message\Sdk\Entity\Error::class, $result->getError(), 'Error should be an Error instance');
         $this->assertEquals(123, $result->getError()->code, 'Error code should be 123');
         $this->assertEquals('Test error message', $result->getError()->message, 'Error message should match the input');
     }

@@ -1,11 +1,11 @@
 <?php
 
-namespace Imobis\Sdk\Core;
+namespace Nexus\Message\Sdk\Core;
 
-use Imobis\Sdk\Config;
-use Imobis\Sdk\Entity\Status;
-use Imobis\Sdk\Logger;
-use Imobis\Sdk\ValueObject\MessageMetadata;
+use Nexus\Message\Sdk\Config;
+use Nexus\Message\Sdk\Entity\Status;
+use Nexus\Message\Sdk\Logger;
+use Nexus\Message\Sdk\ValueObject\MessageMetadata;
 
 abstract class Message
 {

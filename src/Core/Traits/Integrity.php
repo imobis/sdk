@@ -1,8 +1,8 @@
 <?php
 
-namespace Imobis\Sdk\Core\Traits;
+namespace Nexus\Message\Sdk\Core\Traits;
 
-use Imobis\Sdk\Exceptions\ViolationIntegrityEntityException;
+use Nexus\Message\Sdk\Exceptions\ViolationIntegrityEntityException;
 
 trait Integrity {
     public function checkingIntegrityObject(array $rules = []): bool

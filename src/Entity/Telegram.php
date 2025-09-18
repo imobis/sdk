@@ -1,10 +1,10 @@
 <?php
 
-namespace Imobis\Sdk\Entity;
+namespace Nexus\Message\Sdk\Entity;
 
-use Imobis\Sdk\Config;
-use Imobis\Sdk\Core\Message;
-use Imobis\Sdk\ValueObject\MessageMetadata;
+use Nexus\Message\Sdk\Config;
+use Nexus\Message\Sdk\Core\Message;
+use Nexus\Message\Sdk\ValueObject\MessageMetadata;
 
 class Telegram extends Message
 {

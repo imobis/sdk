@@ -1,12 +1,12 @@
 <?php
 
-namespace Imobis\Sdk\Tests;
+namespace Nexus\Message\Sdk\Tests;
 
-use Imobis\Sdk\Core\Message;
-use Imobis\Sdk\Entity\Channel;
-use Imobis\Sdk\Entity\Error;
-use Imobis\Sdk\Entity\Status;
-use Imobis\Sdk\Entity\Template;
+use Nexus\Message\Sdk\Core\Message;
+use Nexus\Message\Sdk\Entity\Channel;
+use Nexus\Message\Sdk\Entity\Error;
+use Nexus\Message\Sdk\Entity\Status;
+use Nexus\Message\Sdk\Entity\Template;
 use PHPUnit\Framework\TestCase;
 
 require_once 'vendor/autoload.php';

@@ -1,21 +1,21 @@
 <?php
 
-namespace Imobis\Sdk\Controllers;
+namespace Nexus\Message\Sdk\Controllers;
 
-use Imobis\Sdk\Config;
-use Imobis\Sdk\Core\Collections\Collection;
-use Imobis\Sdk\Core\Contract\Reading;
+use Nexus\Message\Sdk\Config;
+use Nexus\Message\Sdk\Core\Collections\Collection;
+use Nexus\Message\Sdk\Core\Contract\Reading;
 
 class BalanceController extends Controller implements Reading
 {
-    protected string $model = \Imobis\Sdk\Entity\Balance::class;
+    protected string $model = \Nexus\Message\Sdk\Entity\Balance::class;
     protected string $mode = Config::DATA_MODE;
 
     public function read(?Collection $collection = null, array $filters = []): array
     {
         if ($this->token->getActive()) {
             $data = $this->getData(__FUNCTION__, $filters);
-            $balance = \Imobis\Sdk\Entity\Balance::getInstance();
+            $balance = \Nexus\Message\Sdk\Entity\Balance::getInstance();
             $properties = $balance->getProperties();
 
             if (isset($data['balance'], $properties['balance']) && $data['balance'] !== $properties['balance']) {

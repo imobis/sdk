@@ -1,8 +1,8 @@
 <?php
 
-namespace Imobis\Sdk\Entity;
+namespace Nexus\Message\Sdk\Entity;
 
-use Imobis\Sdk\Core\Traits\Arrayable;
+use Nexus\Message\Sdk\Core\Traits\Arrayable;
 
 class Error
 {

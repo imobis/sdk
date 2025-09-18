@@ -1,14 +1,15 @@
 <?php
 
-namespace Imobis\Sdk\Tests;
+namespace Nexus\Message\Sdk\Tests;
 
-use Imobis\Sdk\Core\Collections\HybridRouteCollection;
-use Imobis\Sdk\Entity\Sms;
-use Imobis\Sdk\Entity\Status;
-use Imobis\Sdk\Entity\Telegram;
-use Imobis\Sdk\Entity\Viber;
-use Imobis\Sdk\Entity\Vk;
-use Imobis\Sdk\ValueObject\MessageMetadata;
+use Nexus\Message\Sdk\Config;
+use Nexus\Message\Sdk\Core\Collections\HybridRouteCollection;
+use Nexus\Message\Sdk\Entity\Sms;
+use Nexus\Message\Sdk\Entity\Status;
+use Nexus\Message\Sdk\Entity\Telegram;
+use Nexus\Message\Sdk\Entity\Viber;
+use Nexus\Message\Sdk\Entity\Vk;
+use Nexus\Message\Sdk\ValueObject\MessageMetadata;
 use PHPUnit\Framework\TestCase;
 
 require_once 'vendor/autoload.php';
@@ -61,7 +62,7 @@ class HybridRouteCollectionTest extends TestCase
      */
     public function testAddObjectWithValidMessage(): void
     {
-        $sms = new Sms('sender', '79939819173', 'Test message', $this->metadata);
+        $sms = new Sms('sender', '358451086128', 'Test message', $this->metadata);
         $result = $this->collection->addObject($sms);
         
         $this->assertTrue($result);
@@ -86,10 +87,10 @@ class HybridRouteCollectionTest extends TestCase
      */
     public function testAddObjectWithMultipleMessages(): void
     {
-        $sms = new Sms('sender', '79939819173', 'Test SMS', $this->metadata);
-        $telegram = new Telegram('79939819173', 'Test Telegram', $this->metadata);
-        $viber = new Viber('sender', '79939819173', 'Test Viber', $this->metadata, 'https://example.com/image.png');
-        $vk = new Vk(5965316, '79939819173', 'Test VK', $this->metadata);
+        $sms = new Sms('sender', '358451086128', 'Test SMS', $this->metadata);
+        $telegram = new Telegram('358451086128', 'Test Telegram', $this->metadata);
+        $viber = new Viber('sender', '358451086128', 'Test Viber', $this->metadata, 'https://example.com/image.png');
+        $vk = new Vk(Config::getVKGroupId(), '358451086128', 'Test VK', $this->metadata);
         
         // First message should be added successfully
         $result1 = $this->collection->addObject($sms);
@@ -117,8 +118,8 @@ class HybridRouteCollectionTest extends TestCase
      */
     public function testAddObjectWithSameMessageType(): void
     {
-        $sms1 = new Sms('sender1', '79939819173', 'Test SMS 1', $this->metadata);
-        $sms2 = new Sms('sender2', '79967933144', 'Test SMS 2', $this->metadata);
+        $sms1 = new Sms('sender1', '358451086128', 'Test SMS 1', $this->metadata);
+        $sms2 = new Sms('sender2', '358451086128', 'Test SMS 2', $this->metadata);
         
         // First SMS should be added successfully
         $result1 = $this->collection->addObject($sms1);
@@ -137,9 +138,9 @@ class HybridRouteCollectionTest extends TestCase
     public function testGetQueryData(): void
     {
         // Add multiple messages of different types
-        $sms = new Sms('sender', '79939819173', 'Test SMS', $this->metadata);
-        $telegram = new Telegram('79939819173', 'Test Telegram', $this->metadata);
-        $viber = new Viber('sender', '79939819173', 'Test Viber', $this->metadata, 'https://example.com/image.png');
+        $sms = new Sms('sender', '358451086128', 'Test SMS', $this->metadata);
+        $telegram = new Telegram('358451086128', 'Test Telegram', $this->metadata);
+        $viber = new Viber('sender', '358451086128', 'Test Viber', $this->metadata, 'https://example.com/image.png');
         
         $this->collection->addObject($sms);
         $this->collection->addObject($telegram);
@@ -187,7 +188,7 @@ class HybridRouteCollectionTest extends TestCase
      */
     public function testSetStatus(): void
     {
-        $sms = new Sms('sender', '79939819173', 'Test SMS', $this->metadata);
+        $sms = new Sms('sender', '358451086128', 'Test SMS', $this->metadata);
         $this->collection->addObject($sms);
         
         $status = new Status('delivered');
@@ -213,9 +214,9 @@ class HybridRouteCollectionTest extends TestCase
     public function testInjection(): void
     {
         // Add multiple messages
-        $sms = new Sms('sender', '79939819173', 'Test SMS', $this->metadata);
-        $telegram = new Telegram('79939819173', 'Test Telegram', $this->metadata);
-        $viber = new Viber('sender', '79939819173', 'Test Viber', $this->metadata, 'https://example.com/image.png');
+        $sms = new Sms('sender', '358451086128', 'Test SMS', $this->metadata);
+        $telegram = new Telegram('358451086128', 'Test Telegram', $this->metadata);
+        $viber = new Viber('sender', '358451086128', 'Test Viber', $this->metadata, 'https://example.com/image.png');
 
         $this->collection->addObject($telegram);
         $this->collection->addObject($viber);

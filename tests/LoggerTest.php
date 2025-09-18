@@ -1,8 +1,8 @@
 <?php
 
-namespace Imobis\Sdk\Tests;
+namespace Nexus\Message\Sdk\Tests;
 
-use Imobis\Sdk\Logger;
+use Nexus\Message\Sdk\Logger;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 

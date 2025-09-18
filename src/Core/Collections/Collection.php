@@ -1,6 +1,6 @@
 <?php
 
-namespace Imobis\Sdk\Core\Collections;
+namespace Nexus\Message\Sdk\Core\Collections;
 
 class Collection implements \ArrayAccess, \Iterator, \Countable
 {

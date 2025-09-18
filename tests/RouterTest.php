@@ -1,12 +1,12 @@
 <?php
 
-namespace Imobis\Sdk\Tests;
+namespace Nexus\Message\Sdk\Tests;
 
-use Imobis\Sdk\Config;
-use Imobis\Sdk\Core\Collections\Collection;
-use Imobis\Sdk\Entity\Token;
-use Imobis\Sdk\Exceptions\HttpInvalidArgumentException;
-use Imobis\Sdk\Request\Router;
+use Nexus\Message\Sdk\Config;
+use Nexus\Message\Sdk\Core\Collections\Collection;
+use Nexus\Message\Sdk\Entity\Token;
+use Nexus\Message\Sdk\Exceptions\HttpInvalidArgumentException;
+use Nexus\Message\Sdk\Request\Router;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
@@ -61,14 +61,14 @@ class RouterTest extends TestCase
     public function testGetResponseWithValidEntity(): void
     {
         // Skip this test if the entity or action doesn't exist in ENTITIES
-        if (!isset($this->entities[\Imobis\Sdk\Entity\Balance::class]['read'])) {
+        if (!isset($this->entities[\Nexus\Message\Sdk\Entity\Balance::class]['read'])) {
             $this->markTestSkipped('Balance entity or read action not found in ENTITIES');
         }
         
         // Call getResponse with a valid entity and action
         $result = Router::getResponse(
             $this->tokenMock,
-            \Imobis\Sdk\Entity\Balance::class,
+            \Nexus\Message\Sdk\Entity\Balance::class,
             'read'
         );
         
@@ -102,7 +102,7 @@ class RouterTest extends TestCase
         // Call getResponse with an invalid action
         $result = Router::getResponse(
             $this->tokenMock,
-            \Imobis\Sdk\Entity\Template::class,
+            \Nexus\Message\Sdk\Entity\Template::class,
             'invalidAction'
         );
         
@@ -116,13 +116,13 @@ class RouterTest extends TestCase
     public function testGetResponseHandlesOptions(): void
     {
         // Skip this test if the entity or action doesn't exist in ENTITIES
-        if (!isset($this->entities[\Imobis\Sdk\Core\Message::class]['channel']['options'])) {
+        if (!isset($this->entities[\Nexus\Message\Sdk\Core\Message::class]['channel']['options'])) {
             $this->markTestSkipped('Message entity, channel action, or options not found in ENTITIES');
         }
         
         // Verify that the options exist in the ENTITIES constant
-        $this->assertArrayHasKey('options', $this->entities[\Imobis\Sdk\Core\Message::class]['channel'], 'Channel action should have options');
-        $this->assertArrayHasKey('sms', $this->entities[\Imobis\Sdk\Core\Message::class]['channel']['options'], 'Options should include sms');
+        $this->assertArrayHasKey('options', $this->entities[\Nexus\Message\Sdk\Core\Message::class]['channel'], 'Channel action should have options');
+        $this->assertArrayHasKey('sms', $this->entities[\Nexus\Message\Sdk\Core\Message::class]['channel']['options'], 'Options should include sms');
         
         // This is a structural test, not a functional test
         $this->assertTrue(true, 'Options structure verified in ENTITIES constant');
@@ -134,7 +134,7 @@ class RouterTest extends TestCase
     public function testParseResponseWithSuccessfulResponseInDataMode(): void
     {
         // Skip this test if the entity or action doesn't exist in ENTITIES
-        if (!isset($this->entities[\Imobis\Sdk\Entity\Template::class]['read'])) {
+        if (!isset($this->entities[\Nexus\Message\Sdk\Entity\Template::class]['read'])) {
             $this->markTestSkipped('Template entity or read action not found in ENTITIES');
         }
         
@@ -153,7 +153,7 @@ class RouterTest extends TestCase
         // Call parseResponse
         $result = Router::parseResponse(
             $testResponse,
-            \Imobis\Sdk\Entity\Template::class,
+            \Nexus\Message\Sdk\Entity\Template::class,
             'read',
             Config::DATA_MODE
         );
@@ -187,7 +187,7 @@ class RouterTest extends TestCase
         // Call parseResponse
         Router::parseResponse(
             $testResponse,
-            \Imobis\Sdk\Entity\Template::class,
+            \Nexus\Message\Sdk\Entity\Template::class,
             'read',
             Config::DATA_MODE
         );
@@ -199,12 +199,12 @@ class RouterTest extends TestCase
     public function testParseResponseWithCollectionMode(): void
     {
         // Skip this test if the entity or action doesn't exist in ENTITIES
-        if (!isset($this->entities[\Imobis\Sdk\Entity\Template::class]['read'])) {
+        if (!isset($this->entities[\Nexus\Message\Sdk\Entity\Template::class]['read'])) {
             $this->markTestSkipped('Template entity or read action not found in ENTITIES');
         }
         
         // Create a mock Template class that can be instantiated with an array
-        $templateMock = $this->getMockBuilder(\Imobis\Sdk\Entity\Template::class)
+        $templateMock = $this->getMockBuilder(\Nexus\Message\Sdk\Entity\Template::class)
             ->disableOriginalConstructor()
             ->getMock();
         
@@ -229,7 +229,7 @@ class RouterTest extends TestCase
         
         // Create a collection with the mock Template class
         $collection = $this->getMockBuilder(Collection::class)
-            ->setConstructorArgs([\Imobis\Sdk\Entity\Template::class])
+            ->setConstructorArgs([\Nexus\Message\Sdk\Entity\Template::class])
             ->getMock();
         
         // Set up the collection mock to expect addObject calls
@@ -245,7 +245,7 @@ class RouterTest extends TestCase
         // Call parseResponse with collection mode
         $result = Router::parseResponse(
             $testResponse,
-            \Imobis\Sdk\Entity\Template::class,
+            \Nexus\Message\Sdk\Entity\Template::class,
             'read',
             Config::COLLECTION_MODE,
             $collection
@@ -261,7 +261,7 @@ class RouterTest extends TestCase
     public function testGetValidationRulesWithValidModelAndAction(): void
     {
         // Get validation rules for Template create
-        $rules = Router::getValidationRules(\Imobis\Sdk\Entity\Template::class, 'create');
+        $rules = Router::getValidationRules(\Nexus\Message\Sdk\Entity\Template::class, 'create');
         
         // Verify the rules
         $this->assertIsArray($rules, 'getValidationRules() should return an array');
@@ -288,7 +288,7 @@ class RouterTest extends TestCase
     public function testGetValidationRulesWithInvalidAction(): void
     {
         // Get validation rules for invalid action
-        $rules = Router::getValidationRules(\Imobis\Sdk\Entity\Template::class, 'invalidAction');
+        $rules = Router::getValidationRules(\Nexus\Message\Sdk\Entity\Template::class, 'invalidAction');
         
         // Verify the rules are empty
         $this->assertEquals([], $rules, 'getValidationRules() should return an empty array for invalid action');

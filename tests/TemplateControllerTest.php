@@ -1,12 +1,12 @@
 <?php
 
-namespace Imobis\Sdk\Tests;
+namespace Nexus\Message\Sdk\Tests;
 
-use Imobis\Sdk\Config;
-use Imobis\Sdk\Controllers\TemplateController;
-use Imobis\Sdk\Core\Collections\Collection;
-use Imobis\Sdk\Entity\Template;
-use Imobis\Sdk\Entity\Token;
+use Nexus\Message\Sdk\Config;
+use Nexus\Message\Sdk\Controllers\TemplateController;
+use Nexus\Message\Sdk\Core\Collections\Collection;
+use Nexus\Message\Sdk\Entity\Template;
+use Nexus\Message\Sdk\Entity\Token;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionMethod;

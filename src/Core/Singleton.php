@@ -1,6 +1,6 @@
 <?php
 
-namespace Imobis\Sdk\Core;
+namespace Nexus\Message\Sdk\Core;
 
 class Singleton
 {

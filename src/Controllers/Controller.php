@@ -1,15 +1,15 @@
 <?php
 
-namespace Imobis\Sdk\Controllers;
+namespace Nexus\Message\Sdk\Controllers;
 
-use Imobis\Sdk\Config;
-use Imobis\Sdk\Core\Collections\Collection;
-use Imobis\Sdk\Entity\Token;
-use Imobis\Sdk\Request\Router;
+use Nexus\Message\Sdk\Config;
+use Nexus\Message\Sdk\Core\Collections\Collection;
+use Nexus\Message\Sdk\Entity\Token;
+use Nexus\Message\Sdk\Request\Router;
 
 abstract class Controller
 {
-    protected string $model = \Imobis\Sdk\Core\Contract\Entity::class;
+    protected string $model = \Nexus\Message\Sdk\Core\Contract\Entity::class;
     protected Token $token;
     protected string $mode = Config::COLLECTION_MODE;
     protected array $filters = [];

@@ -1,15 +1,15 @@
 <?php
 
-namespace Imobis\Sdk\Exceptions;
+namespace Nexus\Message\Sdk\Exceptions;
 
-use Imobis\Sdk\Core\Contract\Entity;
+use Nexus\Message\Sdk\Core\Contract\Entity;
 
 class ViolationIntegrityEntityException extends \Exception
 {
     public function __construct(Entity $entity)
     {
         parent::__construct(
-            "Нарушена целостность объекта: " . get_class($entity)
+            "The integrity of the object is violated: " . get_class($entity)
         );
     }
 }

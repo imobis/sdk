@@ -1,10 +1,10 @@
 <?php
 
-namespace Imobis\Sdk\Tests;
+namespace Nexus\Message\Sdk\Tests;
 
-use Imobis\Sdk\Config;
-use Imobis\Sdk\Entity\Vk;
-use Imobis\Sdk\ValueObject\MessageMetadata;
+use Nexus\Message\Sdk\Config;
+use Nexus\Message\Sdk\Entity\Vk;
+use Nexus\Message\Sdk\ValueObject\MessageMetadata;
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;
 
@@ -37,8 +37,8 @@ class VkTest extends TestCase
         parent::setUp();
         
         // Set up test data
-        $this->testGroupId = 5965316;
-        $this->testPhone = '79939819173';
+        $this->testGroupId = Config::getVKGroupId();
+        $this->testPhone = '358451086128';
         $this->testText = 'Test message';
         
         // Mock the MessageMetadata class
@@ -155,7 +155,7 @@ class VkTest extends TestCase
         $vk = new Vk($this->testGroupId, $this->testPhone, $this->testText, $this->metadataMock);
         
         // Create a mock Status object
-        $statusMock = $this->createMock(\Imobis\Sdk\Entity\Status::class);
+        $statusMock = $this->createMock(\Nexus\Message\Sdk\Entity\Status::class);
         $statusMock->method('getStatus')->willReturn('delivered');
         
         // Set the status

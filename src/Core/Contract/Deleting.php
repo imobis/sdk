@@ -1,6 +1,6 @@
 <?php
 
-namespace Imobis\Sdk\Core\Contract;
+namespace Nexus\Message\Sdk\Core\Contract;
 
 interface Deleting
 {

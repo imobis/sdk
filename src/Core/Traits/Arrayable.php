@@ -1,6 +1,6 @@
 <?php
 
-namespace Imobis\Sdk\Core\Traits;
+namespace Nexus\Message\Sdk\Core\Traits;
 
 trait Arrayable {
     public function toArray(): array

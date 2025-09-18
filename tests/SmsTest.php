@@ -1,10 +1,10 @@
 <?php
 
-namespace Imobis\Sdk\Tests;
+namespace Nexus\Message\Sdk\Tests;
 
-use Imobis\Sdk\Config;
-use Imobis\Sdk\Entity\Sms;
-use Imobis\Sdk\ValueObject\MessageMetadata;
+use Nexus\Message\Sdk\Config;
+use Nexus\Message\Sdk\Entity\Sms;
+use Nexus\Message\Sdk\ValueObject\MessageMetadata;
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;
 
@@ -37,8 +37,8 @@ class SmsTest extends TestCase
         parent::setUp();
         
         // Set up test data
-        $this->testSender = 'imobis.ru';
-        $this->testPhone = '79939819173';
+        $this->testSender = 'nexus';
+        $this->testPhone = '358451086128';
         $this->testText = 'Test message';
         
         // Mock the MessageMetadata class
@@ -152,7 +152,7 @@ class SmsTest extends TestCase
         $sms = new Sms($this->testSender, $this->testPhone, $this->testText, $this->metadataMock);
         
         // Create a mock Status object
-        $statusMock = $this->createMock(\Imobis\Sdk\Entity\Status::class);
+        $statusMock = $this->createMock(\Nexus\Message\Sdk\Entity\Status::class);
         $statusMock->method('getStatus')->willReturn('delivered');
         
         // Set the status

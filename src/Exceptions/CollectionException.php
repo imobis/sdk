@@ -1,8 +1,8 @@
 <?php
 
-namespace Imobis\Sdk\Exceptions;
+namespace Nexus\Message\Sdk\Exceptions;
 
-use Imobis\Sdk\Core\Collections\Collection;
+use Nexus\Message\Sdk\Core\Collections\Collection;
 
 class CollectionException extends \Exception
 {
@@ -10,7 +10,7 @@ class CollectionException extends \Exception
     {
         $class = get_class($collection);
         parent::__construct(
-            "Пустая коллекция, класс $class"
+            "An empty collection of the $class class"
         );
     }
 }

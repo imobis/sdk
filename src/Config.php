@@ -1,6 +1,6 @@
 <?php
 
-namespace Imobis\Sdk;
+namespace Nexus\Message\Sdk;
 
 class Config
 {
@@ -13,8 +13,9 @@ class Config
     const TEMPLATE_REGEX = "/[^\\\[\]\~|]+/gmu";
     const HTTP_CONNECT_TIMEOUT = 3.0;
     const HTTP_TIMEOUT = 90.0;
-    const LOGGER_NAME = 'IMOBIS-SDK';
+    const LOGGER_NAME = 'NEXUS-MESSAGE-SDK';
     const LOGGER_STREAM = 'php://stdout';
+    const CURRENCY = 'RUB';
     const MIN_TTL = 60;
     const MAX_TTL = 172800;
     const MEDIUM_TTL = 86400;

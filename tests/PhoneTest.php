@@ -1,8 +1,8 @@
 <?php
 
-namespace Imobis\Sdk\Tests;
+namespace Nexus\Message\Sdk\Tests;
 
-use Imobis\Sdk\Entity\Phone;
+use Nexus\Message\Sdk\Entity\Phone;
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;
 
@@ -25,17 +25,17 @@ class PhoneTest extends TestCase
         parent::setUp();
         
         // Set up test data
-        $this->testPhoneNumber = '+7 (999) 123-45-67';
+        $this->testPhoneNumber = '+358 451086128';
         $this->testData = [
             'number' => $this->testPhoneNumber,
             'info' => [
-                'phone_number' => '79991234567',
+                'phone_number' => '358451086128',
                 'status' => 'ok',
-                'country' => 'Russia',
-                'operator' => 'MTS',
-                'region_id' => '77',
-                'region_name' => 'Moscow',
-                'region_timezone' => 'Europe/Moscow'
+                'country' => 'FI',
+                'operator' => 'Saunalahti Group Oyj',
+                'region_id' => '',
+                'region_name' => '',
+                'region_timezone' => ''
             ]
         ];
     }
@@ -48,13 +48,13 @@ class PhoneTest extends TestCase
         $phone = new Phone($this->testData);
         
         $this->assertInstanceOf(Phone::class, $phone, 'Constructor should return a Phone instance');
-        $this->assertEquals('79991234567', $phone->getNumber(), 'getNumber() should return the phone number from info');
+        $this->assertEquals('358451086128', $phone->getNumber(), 'getNumber() should return the phone number from info');
         $this->assertEquals('ok', $phone->getStatus(), 'getStatus() should return the status from info');
-        $this->assertEquals('Russia', $phone->getCountry(), 'getCountry() should return the country from info');
-        $this->assertEquals('MTS', $phone->getOperator(), 'getOperator() should return the operator from info');
-        $this->assertEquals('77', $phone->getRegionId(), 'getRegionId() should return the region ID from info');
-        $this->assertEquals('Moscow', $phone->getRegionName(), 'getRegionName() should return the region name from info');
-        $this->assertEquals('Europe/Moscow', $phone->getTimezone(), 'getTimezone() should return the timezone from info');
+        $this->assertEquals('FI', $phone->getCountry(), 'getCountry() should return the country from info');
+        $this->assertEquals('Saunalahti Group Oyj', $phone->getOperator(), 'getOperator() should return the operator from info');
+        $this->assertEquals('', $phone->getRegionId(), 'getRegionId() should return the region ID from info');
+        $this->assertEquals('', $phone->getRegionName(), 'getRegionName() should return the region name from info');
+        $this->assertEquals('', $phone->getTimezone(), 'getTimezone() should return the timezone from info');
     }
 
     /**
@@ -69,7 +69,7 @@ class PhoneTest extends TestCase
         $phone = new Phone($partialData);
         
         $this->assertInstanceOf(Phone::class, $phone, 'Constructor should return a Phone instance');
-        $this->assertEquals('79991234567', $phone->getNumber(), 'getNumber() should return the parsed phone number');
+        $this->assertEquals('358451086128', $phone->getNumber(), 'getNumber() should return the parsed phone number');
         $this->assertEquals('', $phone->getStatus(), 'getStatus() should return empty string when info is not provided');
         $this->assertEquals('', $phone->getCountry(), 'getCountry() should return empty string when info is not provided');
     }
@@ -152,10 +152,10 @@ class PhoneTest extends TestCase
         $this->assertEquals('', $phone->getNumber(), 'Initial number should be empty');
         
         // Set a new number
-        $result = $phone->setNumber('+7 (888) 765-43-21');
+        $result = $phone->setNumber('+358 451-086-128');
         
         // Number should be parsed and set
-        $this->assertEquals('78887654321', $phone->getNumber(), 'getNumber() should return the parsed phone number');
+        $this->assertEquals('358451086128', $phone->getNumber(), 'getNumber() should return the parsed phone number');
         
         // Method should return $this for chaining
         $this->assertSame($phone, $result, 'setNumber() should return $this for method chaining');
@@ -174,25 +174,25 @@ class PhoneTest extends TestCase
         
         // Set new info
         $info = [
-            'phone_number' => '79991234567',
+            'phone_number' => '358451086128',
             'status' => 'ok',
-            'country' => 'Russia',
-            'operator' => 'MTS',
-            'region_id' => '77',
-            'region_name' => 'Moscow',
-            'region_timezone' => 'Europe/Moscow'
+            'country' => 'FI',
+            'operator' => 'Saunalahti Group Oyj',
+            'region_id' => '',
+            'region_name' => '',
+            'region_timezone' => ''
         ];
         
         $result = $phone->setInfo($info);
         
         // Info should be set and accessible via getters
-        $this->assertEquals('79991234567', $phone->getNumber(), 'getNumber() should return the phone number from info');
+        $this->assertEquals('358451086128', $phone->getNumber(), 'getNumber() should return the phone number from info');
         $this->assertEquals('ok', $phone->getStatus(), 'getStatus() should return the status from info');
-        $this->assertEquals('Russia', $phone->getCountry(), 'getCountry() should return the country from info');
-        $this->assertEquals('MTS', $phone->getOperator(), 'getOperator() should return the operator from info');
-        $this->assertEquals('77', $phone->getRegionId(), 'getRegionId() should return the region ID from info');
-        $this->assertEquals('Moscow', $phone->getRegionName(), 'getRegionName() should return the region name from info');
-        $this->assertEquals('Europe/Moscow', $phone->getTimezone(), 'getTimezone() should return the timezone from info');
+        $this->assertEquals('FI', $phone->getCountry(), 'getCountry() should return the country from info');
+        $this->assertEquals('Saunalahti Group Oyj', $phone->getOperator(), 'getOperator() should return the operator from info');
+        $this->assertEquals('', $phone->getRegionId(), 'getRegionId() should return the region ID from info');
+        $this->assertEquals('', $phone->getRegionName(), 'getRegionName() should return the region name from info');
+        $this->assertEquals('', $phone->getTimezone(), 'getTimezone() should return the timezone from info');
         
         // Method should return $this for chaining
         $this->assertSame($phone, $result, 'setInfo() should return $this for method chaining');
@@ -228,10 +228,10 @@ class PhoneTest extends TestCase
         $reflection->setAccessible(true);
         
         // Test with various phone formats
-        $this->assertEquals('79991234567', $reflection->invoke(null, '+7 (999) 123-45-67'), 'parseNumber() should extract only digits from phone number');
-        $this->assertEquals('79991234567', $reflection->invoke(null, '7 999 123 45 67'), 'parseNumber() should extract only digits from phone number');
-        $this->assertEquals('79991234567', $reflection->invoke(null, '7(999)123-45-67'), 'parseNumber() should extract only digits from phone number');
-        $this->assertEquals('79991234567', $reflection->invoke(null, '79991234567'), 'parseNumber() should return the same number if it contains only digits');
+        $this->assertEquals('358451086128', $reflection->invoke(null, '+358 451086128'), 'parseNumber() should extract only digits from phone number');
+        $this->assertEquals('358451086128', $reflection->invoke(null, '358 451 086 128'), 'parseNumber() should extract only digits from phone number');
+        $this->assertEquals('358451086128', $reflection->invoke(null, '358 451-086-128'), 'parseNumber() should extract only digits from phone number');
+        $this->assertEquals('358451086128', $reflection->invoke(null, '358451086128'), 'parseNumber() should return the same number if it contains only digits');
         $this->assertEquals('', $reflection->invoke(null, 'not-a-number'), 'parseNumber() should return empty string for non-numeric input');
     }
 
@@ -282,7 +282,7 @@ class PhoneTest extends TestCase
         $this->assertArrayHasKey('check', $original, 'Original should contain check key');
         $this->assertArrayHasKey('number', $original, 'Original should contain number key');
         $this->assertArrayHasKey('info', $original, 'Original should contain info key');
-        $this->assertEquals('79991234567', $original['number'], 'Original number should match the phone number');
+        $this->assertEquals('358451086128', $original['number'], 'Original number should match the phone number');
     }
 
     /**
@@ -316,8 +316,8 @@ class PhoneTest extends TestCase
         $this->assertArrayHasKey('check', $properties, 'Properties should contain check key');
         $this->assertArrayHasKey('number', $properties, 'Properties should contain number key');
         $this->assertArrayHasKey('info', $properties, 'Properties should contain info key');
-        $this->assertEquals('79991234567', $properties['number'], 'Properties number should match the phone number');
+        $this->assertEquals('358451086128', $properties['number'], 'Properties number should match the phone number');
         $this->assertEquals('ok', $properties['info']['status'], 'Properties info status should match the status');
-        $this->assertEquals('Russia', $properties['info']['country'], 'Properties info country should match the country');
+        $this->assertEquals('FI', $properties['info']['country'], 'Properties info country should match the country');
     }
 }

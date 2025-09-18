@@ -1,8 +1,8 @@
 <?php
 
-namespace Imobis\Sdk\Core\Collections;
+namespace Nexus\Message\Sdk\Core\Collections;
 
-use Imobis\Sdk\Entity\Status;
+use Nexus\Message\Sdk\Entity\Status;
 
 class ChannelRouteCollection extends RouteCollection
 {

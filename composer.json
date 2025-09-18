@@ -1,6 +1,6 @@
 {
     "name": "imobis/api-sdk",
-    "description": "Composer examples by IMOBIS",
+    "description": "API SDK",
     "keywords": [
         "imobis",
         "api-sdk"
@@ -10,7 +10,7 @@
     "authors": [
         {
             "name": "Igor Kislitsa",
-            "email": "igor.k@imobis.ru",
+            "email": "igor.k@corp.mmngr.com",
             "role": "Developer"
         }
     ],
@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Imobis\\Sdk\\": "src"
+            "Nexus\\Message\\Sdk\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Imobis\\Sdk\\Tests\\": "tests"
+            "Nexus\\Message\\Sdk\\Tests\\": "tests"
         }
     },
     "config": {

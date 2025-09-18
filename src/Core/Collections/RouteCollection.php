@@ -1,12 +1,12 @@
 <?php
 
-namespace Imobis\Sdk\Core\Collections;
+namespace Nexus\Message\Sdk\Core\Collections;
 
-use Imobis\Sdk\Core\Message;
-use Imobis\Sdk\Entity\Sms;
-use Imobis\Sdk\Entity\Telegram;
-use Imobis\Sdk\Entity\Viber;
-use Imobis\Sdk\Entity\Vk;
+use Nexus\Message\Sdk\Core\Message;
+use Nexus\Message\Sdk\Entity\Sms;
+use Nexus\Message\Sdk\Entity\Telegram;
+use Nexus\Message\Sdk\Entity\Viber;
+use Nexus\Message\Sdk\Entity\Vk;
 
 abstract class RouteCollection extends Collection
 {
@@ -15,7 +15,7 @@ abstract class RouteCollection extends Collection
 
     public function __construct()
     {
-        parent::__construct(\Imobis\Sdk\Core\Message::class);
+        parent::__construct(\Nexus\Message\Sdk\Core\Message::class);
     }
 
     protected abstract function injection();

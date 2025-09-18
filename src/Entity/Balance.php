@@ -1,17 +1,18 @@
 <?php
 
-namespace Imobis\Sdk\Entity;
+namespace Nexus\Message\Sdk\Entity;
 
-use Imobis\Sdk\Core\Contract\Entity;
-use Imobis\Sdk\Core\Singleton;
-use Imobis\Sdk\Core\Traits\Integrity;
+use Nexus\Message\Sdk\Config;
+use Nexus\Message\Sdk\Core\Contract\Entity;
+use Nexus\Message\Sdk\Core\Singleton;
+use Nexus\Message\Sdk\Core\Traits\Integrity;
 
 class Balance extends Singleton implements Entity
 {
     use Integrity;
 
     protected float $balance = 0.0;
-    protected string $currency = 'RUB';
+    protected string $currency = Config::CURRENCY;
     private bool $fresh = false;
     private array $original = [];
     private array $changes = [];

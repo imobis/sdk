@@ -1,6 +1,6 @@
 <?php
 
-namespace Imobis\Sdk\ValueObject;
+namespace Nexus\Message\Sdk\ValueObject;
 
 class RequestData
 {

@@ -1,19 +1,19 @@
 <?php
 
-namespace Imobis\Sdk\Controllers;
+namespace Nexus\Message\Sdk\Controllers;
 
-use Imobis\Sdk\Core\Collections\Collection;
-use Imobis\Sdk\Core\Contract\Creating;
-use Imobis\Sdk\Core\Contract\Deleting;
-use Imobis\Sdk\Core\Contract\Entity;
-use Imobis\Sdk\Core\Contract\Filtering;
-use Imobis\Sdk\Core\Contract\Reading;
-use Imobis\Sdk\Core\Contract\Updating;
-use Imobis\Sdk\Request\Router;
+use Nexus\Message\Sdk\Core\Collections\Collection;
+use Nexus\Message\Sdk\Core\Contract\Creating;
+use Nexus\Message\Sdk\Core\Contract\Deleting;
+use Nexus\Message\Sdk\Core\Contract\Entity;
+use Nexus\Message\Sdk\Core\Contract\Filtering;
+use Nexus\Message\Sdk\Core\Contract\Reading;
+use Nexus\Message\Sdk\Core\Contract\Updating;
+use Nexus\Message\Sdk\Request\Router;
 
 class TemplateController extends Controller implements Reading, Creating, Updating, Deleting, Filtering
 {
-    protected string $model = \Imobis\Sdk\Entity\Template::class;
+    protected string $model = \Nexus\Message\Sdk\Entity\Template::class;
 
     public function read(?Collection $collection = null, array $filters = []): array
     {

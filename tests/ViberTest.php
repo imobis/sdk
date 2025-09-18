@@ -1,10 +1,10 @@
 <?php
 
-namespace Imobis\Sdk\Tests;
+namespace Nexus\Message\Sdk\Tests;
 
-use Imobis\Sdk\Config;
-use Imobis\Sdk\Entity\Viber;
-use Imobis\Sdk\ValueObject\MessageMetadata;
+use Nexus\Message\Sdk\Config;
+use Nexus\Message\Sdk\Entity\Viber;
+use Nexus\Message\Sdk\ValueObject\MessageMetadata;
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;
 
@@ -47,13 +47,13 @@ class ViberTest extends TestCase
         parent::setUp();
         
         // Set up test data
-        $this->testSender = 'imobis.ru';
-        $this->testPhone = '79939819173';
+        $this->testSender = 'nexus';
+        $this->testPhone = '358451086128';
         $this->testText = 'Test message';
-        $this->testImageUrl = 'https://sms.imobis.ru/_misc/lookandfeel/workSide/images/Imobis_logo.png';
+        $this->testImageUrl = 'https://example.com/logo.png';
         $this->testAction = [
-            'title' => 'Imobis',
-            'url' => 'https://imobis.ru',
+            'title' => 'Link',
+            'url' => 'https://example.com',
         ];
         
         // Mock the MessageMetadata class
@@ -318,7 +318,7 @@ class ViberTest extends TestCase
         );
         
         // Create a mock Status object
-        $statusMock = $this->createMock(\Imobis\Sdk\Entity\Status::class);
+        $statusMock = $this->createMock(\Nexus\Message\Sdk\Entity\Status::class);
         $statusMock->method('getStatus')->willReturn('delivered');
         
         // Set the status

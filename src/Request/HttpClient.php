@@ -1,16 +1,16 @@
 <?php
 
-namespace Imobis\Sdk\Request;
+namespace Nexus\Message\Sdk\Request;
 
 use GuzzleHttp\Exception\ConnectException;
-use Imobis\Sdk\Entity\Sandbox;
-use Imobis\Sdk\Entity\Token;
-use Imobis\Sdk\Config;
+use Nexus\Message\Sdk\Entity\Sandbox;
+use Nexus\Message\Sdk\Entity\Token;
+use Nexus\Message\Sdk\Config;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
-use Imobis\Sdk\Exceptions\ConnectionException;
-use Imobis\Sdk\Logger;
-use Imobis\Sdk\ValueObject\RequestData;
+use Nexus\Message\Sdk\Exceptions\ConnectionException;
+use Nexus\Message\Sdk\Logger;
+use Nexus\Message\Sdk\ValueObject\RequestData;
 
 class HttpClient
 {

@@ -1,8 +1,9 @@
 <?php
 
-namespace Imobis\Sdk\Tests;
+namespace Nexus\Message\Sdk\Tests;
 
-use Imobis\Sdk\Entity\Balance;
+use Nexus\Message\Sdk\Config;
+use Nexus\Message\Sdk\Entity\Balance;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
@@ -93,8 +94,8 @@ class BalanceTest extends TestCase
     {
         $balance = Balance::getInstance();
         
-        // Default currency should be 'RUB'
-        $this->assertEquals('RUB', $balance->getCurrency(), 'Default currency should be RUB');
+        // Default currency should be Config::CURRENCY
+        $this->assertEquals(Config::CURRENCY, $balance->getCurrency(), 'Default currency should be ' . Config::CURRENCY);
         
         // Set currency using magic __set method
         $balance->currency = 'USD';
@@ -247,7 +248,7 @@ class BalanceTest extends TestCase
         $balance = Balance::getInstance();
         
         // Initial state
-        $this->assertEquals('RUB', $balance->getCurrency(), 'Initial currency should be RUB');
+        $this->assertEquals(Config::CURRENCY, $balance->getCurrency(), 'Initial currency should be ' . Config::CURRENCY);
         $this->assertEmpty($balance->getChanges(), 'Changes should be empty initially');
         
         // Set currency to a new value

@@ -1,11 +1,11 @@
 <?php
 
-namespace Imobis\Sdk\Tests;
+namespace Nexus\Message\Sdk\Tests;
 
-use Imobis\Sdk\Config;
-use Imobis\Sdk\Controllers\BalanceController;
-use Imobis\Sdk\Entity\Balance;
-use Imobis\Sdk\Entity\Token;
+use Nexus\Message\Sdk\Config;
+use Nexus\Message\Sdk\Controllers\BalanceController;
+use Nexus\Message\Sdk\Entity\Balance;
+use Nexus\Message\Sdk\Entity\Token;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionMethod;
@@ -53,12 +53,12 @@ class BalanceControllerTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
         $this->balanceMock->method('getBalance')->willReturn(100.0);
-        $this->balanceMock->method('getCurrency')->willReturn('RUB');
+        $this->balanceMock->method('getCurrency')->willReturn(Config::CURRENCY);
         $this->balanceMock->method('isFresh')->willReturn(true);
         $this->balanceMock->method('getProperties')->willReturn([
             'balance' => 100.0,
             'fresh' => true,
-            'currency' => 'RUB'
+            'currency' => Config::CURRENCY
         ]);
         
         // Reset the Balance singleton instance before each test
@@ -260,7 +260,7 @@ class BalanceControllerTest extends TestCase
         // Mock the getData method to return test data with the same balance and currency
         $testData = [
             'balance' => 100.0,
-            'currency' => 'RUB'
+            'currency' => Config::CURRENCY
         ];
         
         // Create a partial mock of the controller to mock the getData method
@@ -296,7 +296,7 @@ class BalanceControllerTest extends TestCase
         $controller = new BalanceController($this->tokenMock);
         
         // Create a mock collection
-        $collectionMock = $this->createMock(\Imobis\Sdk\Core\Collections\Collection::class);
+        $collectionMock = $this->createMock(\Nexus\Message\Sdk\Core\Collections\Collection::class);
         
         // Create test filters
         $filters = ['test_filter' => 'test_value'];
@@ -304,7 +304,7 @@ class BalanceControllerTest extends TestCase
         // Mock the getData method to return test data
         $testData = [
             'balance' => 150.0,
-            'currency' => 'USD'
+            'currency' => Config::CURRENCY
         ];
         
         // Create a partial mock of the controller to mock the getData method

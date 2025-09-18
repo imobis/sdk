@@ -1,10 +1,10 @@
 <?php
 
-namespace Imobis\Sdk\Tests;
+namespace Nexus\Message\Sdk\Tests;
 
-use Imobis\Sdk\Config;
-use Imobis\Sdk\Entity\Telegram;
-use Imobis\Sdk\ValueObject\MessageMetadata;
+use Nexus\Message\Sdk\Config;
+use Nexus\Message\Sdk\Entity\Telegram;
+use Nexus\Message\Sdk\ValueObject\MessageMetadata;
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;
 
@@ -32,7 +32,7 @@ class TelegramTest extends TestCase
         parent::setUp();
         
         // Set up test data
-        $this->testPhone = '79939819173';
+        $this->testPhone = '358451086128';
         $this->testText = '1234 test 567 message 89';
         
         // Mock the MessageMetadata class
@@ -152,7 +152,7 @@ class TelegramTest extends TestCase
         $telegram = new Telegram($this->testPhone, $this->testText, $this->metadataMock);
         
         // Create a mock Status object
-        $statusMock = $this->createMock(\Imobis\Sdk\Entity\Status::class);
+        $statusMock = $this->createMock(\Nexus\Message\Sdk\Entity\Status::class);
         $statusMock->method('getStatus')->willReturn('delivered');
         
         // Set the status

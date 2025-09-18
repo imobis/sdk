@@ -1,17 +1,17 @@
 <?php
 
-namespace Imobis\Sdk\Request;
+namespace Nexus\Message\Sdk\Request;
 
-use Imobis\Sdk\Config;
-use Imobis\Sdk\Core\Collections\Collection;
-use Imobis\Sdk\Entity\Token;
-use Imobis\Sdk\Exceptions\HttpInvalidArgumentException;
-use Imobis\Sdk\ValueObject\RequestData;
+use Nexus\Message\Sdk\Config;
+use Nexus\Message\Sdk\Core\Collections\Collection;
+use Nexus\Message\Sdk\Entity\Token;
+use Nexus\Message\Sdk\Exceptions\HttpInvalidArgumentException;
+use Nexus\Message\Sdk\ValueObject\RequestData;
 
 class Router
 {
     protected const ENTITIES = [
-        \Imobis\Sdk\Entity\Template::class => [
+        \Nexus\Message\Sdk\Entity\Template::class => [
             'read' => [
                 'route' => 'template/show',
                 'method' => 'GET',
@@ -65,13 +65,13 @@ class Router
                 ]
             ],
         ],
-        \Imobis\Sdk\Entity\Balance::class => [
+        \Nexus\Message\Sdk\Entity\Balance::class => [
             'read' => [
                 'route' => 'balance',
                 'method' => 'POST',
             ],
         ],
-        \Imobis\Sdk\Entity\Phone::class => [
+        \Nexus\Message\Sdk\Entity\Phone::class => [
             'read' => [
                 'route' => 'check/phone',
                 'method' => 'POST',
@@ -81,7 +81,7 @@ class Router
                 'response_key' => 'data'
             ],
         ],
-        \Imobis\Sdk\Entity\Sender::class => [
+        \Nexus\Message\Sdk\Entity\Sender::class => [
             'read' => [
                 'route' => 'senders',
                 'method' => 'POST',
@@ -91,13 +91,13 @@ class Router
                 'response_key' => 'senders'
             ],
         ],
-        \Imobis\Sdk\Entity\Token::class => [
+        \Nexus\Message\Sdk\Entity\Token::class => [
             'read' => [
                 'route' => 'info',
                 'method' => 'POST',
             ],
         ],
-        \Imobis\Sdk\Core\Message::class => [
+        \Nexus\Message\Sdk\Core\Message::class => [
             'hydrid' => [
                 'route' => 'message/send',
                 'method' => 'POST',

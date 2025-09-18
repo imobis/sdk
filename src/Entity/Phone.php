@@ -1,9 +1,9 @@
 <?php
 
-namespace Imobis\Sdk\Entity;
+namespace Nexus\Message\Sdk\Entity;
 
-use Imobis\Sdk\Core\Contract\Entity;
-use Imobis\Sdk\Core\Traits\Integrity;
+use Nexus\Message\Sdk\Core\Contract\Entity;
+use Nexus\Message\Sdk\Core\Traits\Integrity;
 
 class Phone implements Entity
 {

@@ -1,14 +1,15 @@
 <?php
 
-namespace Imobis\Sdk\Tests;
+namespace Nexus\Message\Sdk\Tests;
 
-use Imobis\Sdk\Core\Collections\RouteCollection;
-use Imobis\Sdk\Entity\Sms;
-use Imobis\Sdk\Entity\Status;
-use Imobis\Sdk\Entity\Telegram;
-use Imobis\Sdk\Entity\Viber;
-use Imobis\Sdk\Entity\Vk;
-use Imobis\Sdk\ValueObject\MessageMetadata;
+use Nexus\Message\Sdk\Config;
+use Nexus\Message\Sdk\Core\Collections\RouteCollection;
+use Nexus\Message\Sdk\Entity\Sms;
+use Nexus\Message\Sdk\Entity\Status;
+use Nexus\Message\Sdk\Entity\Telegram;
+use Nexus\Message\Sdk\Entity\Viber;
+use Nexus\Message\Sdk\Entity\Vk;
+use Nexus\Message\Sdk\ValueObject\MessageMetadata;
 use PHPUnit\Framework\TestCase;
 
 require_once 'vendor/autoload.php';
@@ -83,7 +84,7 @@ class RouteCollectionTest extends TestCase
      */
     public function testAddObjectWithValidMessage(): void
     {
-        $sms = new Sms('sender', '79939819173', 'Test message', $this->metadata);
+        $sms = new Sms('sender', '358451086128', 'Test message', $this->metadata);
         $result = $this->collection->addObject($sms);
         
         $this->assertTrue($result);
@@ -108,10 +109,10 @@ class RouteCollectionTest extends TestCase
      */
     public function testAddObjectWithDifferentMessageTypes(): void
     {
-        $sms = new Sms('sender', '79939819173', 'Test SMS', $this->metadata);
-        $telegram = new Telegram('79939819173', 'Test Telegram', $this->metadata);
-        $viber = new Viber('sender', '79939819173', 'Test Viber', $this->metadata, 'https://example.com/image.png');
-        $vk = new Vk(5965316, '79939819173', 'Test VK', $this->metadata);
+        $sms = new Sms('sender', '358451086128', 'Test SMS', $this->metadata);
+        $telegram = new Telegram('358451086128', 'Test Telegram', $this->metadata);
+        $viber = new Viber('sender', '358451086128', 'Test Viber', $this->metadata, 'https://example.com/image.png');
+        $vk = new Vk(Config::getVKGroupId(), '358451086128', 'Test VK', $this->metadata);
         
         $this->collection->addObject($sms);
         $this->collection->addObject($telegram);
@@ -130,7 +131,7 @@ class RouteCollectionTest extends TestCase
      */
     public function testGetQueryData(): void
     {
-        $sms = new Sms('sender', '79939819173', 'Test SMS', $this->metadata);
+        $sms = new Sms('sender', '358451086128', 'Test SMS', $this->metadata);
         $this->collection->addObject($sms);
         
         $queryData = $this->collection->getQueryData();
@@ -149,10 +150,10 @@ class RouteCollectionTest extends TestCase
      */
     public function testGetMessageChannel(): void
     {
-        $sms = new Sms('sender', '79939819173', 'Test SMS', $this->metadata);
-        $telegram = new Telegram('79939819173', 'Test Telegram', $this->metadata);
-        $viber = new Viber('sender', '79939819173', 'Test Viber', $this->metadata, 'https://example.com/image.png');
-        $vk = new Vk(5965316, '79939819173', 'Test VK', $this->metadata);
+        $sms = new Sms('sender', '358451086128', 'Test SMS', $this->metadata);
+        $telegram = new Telegram('358451086128', 'Test Telegram', $this->metadata);
+        $viber = new Viber('sender', '358451086128', 'Test Viber', $this->metadata, 'https://example.com/image.png');
+        $vk = new Vk(Config::getVKGroupId(), '358451086128', 'Test VK', $this->metadata);
         
         // Use reflection to access protected method
         $reflectionMethod = new \ReflectionMethod(TestRouteCollection::class, 'getMessageChannel');
@@ -169,7 +170,7 @@ class RouteCollectionTest extends TestCase
      */
     public function testSetStatusAndInjection(): void
     {
-        $sms = new Sms('sender', '79939819173', 'Test SMS', $this->metadata);
+        $sms = new Sms('sender', '358451086128', 'Test SMS', $this->metadata);
         $this->collection->addObject($sms);
         
         $status = new Status('delivered');
@@ -194,8 +195,8 @@ class RouteCollectionTest extends TestCase
      */
     public function testAddChannel(): void
     {
-        $sms = new Sms('sender', '79939819173', 'Test SMS', $this->metadata);
-        $telegram = new Telegram('79939819173', 'Test Telegram', $this->metadata);
+        $sms = new Sms('sender', '358451086128', 'Test SMS', $this->metadata);
+        $telegram = new Telegram('358451086128', 'Test Telegram', $this->metadata);
         
         // Use reflection to access protected method and property
         $reflectionMethod = new \ReflectionMethod(TestRouteCollection::class, 'addChannel');
@@ -233,9 +234,9 @@ class RouteCollectionTest extends TestCase
      */
     public function testCheck(): void
     {
-        $sms = new Sms('sender', '79939819173', 'Test SMS', $this->metadata);
-        $sameTypeSms = new Sms('sender2', '79991112233', 'Another SMS', $this->metadata);
-        $telegram = new Telegram('79939819173', 'Test Telegram', $this->metadata);
+        $sms = new Sms('sender', '358451086128', 'Test SMS', $this->metadata);
+        $sameTypeSms = new Sms('sender2', '358451086128', 'Another SMS', $this->metadata);
+        $telegram = new Telegram('358451086128', 'Test Telegram', $this->metadata);
         
         // Use reflection to access protected method and property
         $reflectionMethod = new \ReflectionMethod(TestRouteCollection::class, 'check');
@@ -260,11 +261,11 @@ class RouteCollectionTest extends TestCase
         
         // Add more items to reach the count limit
         $this->collection->addObject($telegram);
-        $viber = new Viber('sender', '79939819173', 'Test Viber', $this->metadata, 'https://example.com/image.png');
+        $viber = new Viber('sender', '358451086128', 'Test Viber', $this->metadata, 'https://example.com/image.png');
         $this->collection->addObject($viber);
         
         // Check with any type should fail (count limit reached)
-        $vk = new Vk(5965316, '79939819173', 'Test VK', $this->metadata);
+        $vk = new Vk(Config::getVKGroupId(), '358451086128', 'Test VK', $this->metadata);
         $this->assertFalse($reflectionMethod->invoke($this->collection, $vk));
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace Imobis\Sdk\Tests;
+namespace Nexus\Message\Sdk\Tests;
 
-use Imobis\Sdk\Core\Collections\SimpleRouteCollection;
-use Imobis\Sdk\Entity\Sms;
-use Imobis\Sdk\Entity\Status;
-use Imobis\Sdk\Entity\Telegram;
-use Imobis\Sdk\ValueObject\MessageMetadata;
+use Nexus\Message\Sdk\Core\Collections\SimpleRouteCollection;
+use Nexus\Message\Sdk\Entity\Sms;
+use Nexus\Message\Sdk\Entity\Status;
+use Nexus\Message\Sdk\Entity\Telegram;
+use Nexus\Message\Sdk\ValueObject\MessageMetadata;
 use PHPUnit\Framework\TestCase;
 
 require_once 'vendor/autoload.php';
@@ -59,7 +59,7 @@ class SimpleRouteCollectionTest extends TestCase
      */
     public function testAddObjectWithValidMessage(): void
     {
-        $sms = new Sms('sender', '79939819173', 'Test message', $this->metadata);
+        $sms = new Sms('sender', '358451086128', 'Test message', $this->metadata);
         $result = $this->collection->addObject($sms);
         
         $this->assertTrue($result);
@@ -84,8 +84,8 @@ class SimpleRouteCollectionTest extends TestCase
      */
     public function testAddObjectWithMultipleMessages(): void
     {
-        $sms = new Sms('sender', '79939819173', 'Test SMS', $this->metadata);
-        $telegram = new Telegram('79939819173', 'Test Telegram', $this->metadata);
+        $sms = new Sms('sender', '358451086128', 'Test SMS', $this->metadata);
+        $telegram = new Telegram('358451086128', 'Test Telegram', $this->metadata);
         
         // First message should be added successfully
         $result1 = $this->collection->addObject($sms);
@@ -103,8 +103,8 @@ class SimpleRouteCollectionTest extends TestCase
      */
     public function testAddObjectWithSameMessageType(): void
     {
-        $sms1 = new Sms('sender1', '79939819173', 'Test SMS 1', $this->metadata);
-        $sms2 = new Sms('sender2', '79991112233', 'Test SMS 2', $this->metadata);
+        $sms1 = new Sms('sender1', '358451086128', 'Test SMS 1', $this->metadata);
+        $sms2 = new Sms('sender2', '358451086128', 'Test SMS 2', $this->metadata);
         
         // First SMS should be added successfully
         $result1 = $this->collection->addObject($sms1);
@@ -122,7 +122,7 @@ class SimpleRouteCollectionTest extends TestCase
      */
     public function testGetQueryData(): void
     {
-        $sms = new Sms('sender', '79939819173', 'Test SMS', $this->metadata);
+        $sms = new Sms('sender', '358451086128', 'Test SMS', $this->metadata);
         $this->collection->addObject($sms);
         
         $queryData = $this->collection->getQueryData();
@@ -160,7 +160,7 @@ class SimpleRouteCollectionTest extends TestCase
      */
     public function testSetStatus(): void
     {
-        $sms = new Sms('sender', '79939819173', 'Test SMS', $this->metadata);
+        $sms = new Sms('sender', '358451086128', 'Test SMS', $this->metadata);
         $this->collection->addObject($sms);
         
         $status = new Status('delivered');
@@ -186,7 +186,7 @@ class SimpleRouteCollectionTest extends TestCase
     public function testInjection(): void
     {
         // Add a message
-        $sms = new Sms('sender', '79939819173', 'Test SMS', $this->metadata);
+        $sms = new Sms('sender', '358451086128', 'Test SMS', $this->metadata);
         $this->collection->addObject($sms);
         
         // Create a status with entity ID
