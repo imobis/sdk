@@ -1,8 +1,8 @@
 # IMOBIS SDK
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/imobis/api-sdk)
-[![Tests](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/imobis/sdk/actions/workflows/run-tests.yml)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/imobis/api-sdk)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/imobis/sdk.svg?style=flat-square)](https://packagist.org/packages/imobis/api-sdk)
+[![Tests](https://img.shields.io/github/actions/workflow/status/imobis/sdk/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/imobis/sdk/actions/workflows/run-tests.yml)
+[![Total Downloads](https://img.shields.io/packagist/dt/imobis/sdk.svg?style=flat-square)](https://packagist.org/packages/imobis/api-sdk)
 
 Библиотека для отправки сообщений через сервисы imobis.ru
 
